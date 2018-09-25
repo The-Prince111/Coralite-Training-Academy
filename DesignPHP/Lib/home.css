@@ -1,0 +1,236 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 24, 2018, 6:00:55 PM
+    Author     : philane
+*/
+.body
+{
+    width: 100%;
+    height: auto;
+    background: linear-gradient(white,white,white);
+}
+.header
+{
+    width: 80%;
+    height: 160px;
+    box-shadow: 0px 3px 3px 0px #e0e0e0;
+    margin-left: 160px;
+    position: fixed;
+}
+.inheaderleft
+{
+    width: 60%;
+    height: 100%;
+    box-shadow: 0px 0px 0px 0px #e0e0e0;
+    background-image:  url("siteImage.png");
+    background-position: left 30px;
+    background-repeat: no-repeat;
+    float: left;
+}
+.inheaderright
+{
+    width: 40%;
+    height: 100%;
+    box-shadow: 0px 0px 0px 0px #e0e0e0;
+    float: right;
+    
+}
+.menu
+{
+    width: 95%;
+    height: 30px;
+    color: #555;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px White;
+    background: linear-gradient(#e0e0e0,silver,#e0e0e0);
+    margin-top: 120px;
+}
+.clear
+{
+    width: 80%;
+    height: 5px;
+    box-shadow: 0px 0px 0px 0px #e0e0e0;
+    margin-left: 160px; 
+    background-color: transparent;
+}
+/*MENU*/
+ul 
+{
+    list-style-type: none;
+    width: auto;
+    background-color: transparent;
+    display: block;
+    height: auto; /* Full height */
+}
+li 
+{
+    float: left;
+    margin-top: 6px;
+    margin-left: 15px;
+    padding: 0px 20px;
+}
+
+li a 
+{
+    display: block;
+    color: #555;
+    font-weight: 900;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #000000;
+}
+
+/* Change the link color on hover */
+li a:hover 
+{
+    background-color: #555;
+    background-color: transparent;
+    color: white;
+    text-shadow: 1px 1px 1px white;
+}
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.content
+{
+    width: 81%;
+    height: 580px;
+    text-align: center;
+    color: black;
+    text-shadow: 0px 1px 0px #000000;
+    background-color: transparent;
+    box-shadow: 0px 0px 0px 0px #e0e0e0;
+    margin-left: 160px;
+    margin-top: 200px;
+    position: inherit;
+}
+.footer
+{
+    width: 81%;
+    height: 160px;
+    position: fixed;
+    box-shadow: 0px 3px 3px 0px white;
+    margin-left: 160px;
+    background: linear-gradient(white,#e0e0e0,silver);
+}
+/*CONTROLS*/
+.button
+{
+    width: 280px;
+    height: 20px;
+    color: #555;
+    font-weight: 500;
+    border: thin grey solid;
+    text-shadow: 0px 1px 0px #000000;
+    /*border-radius: 30px;*/
+    background: linear-gradient(Silver,white,Silver);
+}
+.buttonLogin
+{
+    width: 280px;
+    height: 20px;
+    color: #555;
+    font-weight: 500;
+    border: thin grey solid;
+    text-shadow: 0px 1px 0px #000000;
+    background: linear-gradient(Silver,white,Silver);
+}
+.textbox
+{
+    width: 280px;
+    height: 30px;
+    border: none;
+    box-shadow: 0px 1px 0px grey;
+    text-shadow: 0px 1px 0px #000000;
+    
+}
+
+.textboxline
+{
+    width: 280px;
+    height: 20px;
+    border: none;
+    background-color: transparent;
+    box-shadow: 0px 1px 0px grey;
+    text-shadow: 0px 1px 0px #000000;
+    
+}
+
+.dropdown
+{
+    width: 280px;
+    height: 20px;
+    border: none;
+    box-shadow: 0px 1px 0px grey;
+    text-shadow: 0px 1px 0px #000000;
+}
+.calender
+{
+    
+}
+/*PAGES*/
+.tab
+{
+    width: 80%;
+    height: 20px;
+    color: silver;
+    box-shadow: 0px 3px 3px 0px #e0e0e0;
+    margin-left: 160px; 
+    background-color: transparent;
+}
+.login
+{
+    width: 550px;
+    height: 300px;
+    box-shadow: 3px 3px 3px 1px #e0e0e0;
+    margin-left: 500px;
+    margin-top: 30px;
+    position: fixed; 
+    border-radius: 3px;
+    border: 1px solid #e0e0e0 ;
+}
+.inloginleft
+{
+    width: 39%;
+    height: 100%;
+    float: left;
+    background-image:  url("login.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 1px;
+}
+.inloginright
+{
+    width: 60%;
+    height: 100%;
+    float: right;
+}
+.reg
+{
+    width: 550px;
+    height: 650px;
+    box-shadow: 3px 3px 3px 1px #e0e0e0;
+    margin-left: 500px;
+    position: fixed; 
+    border-radius: 3px;
+    border: 1px solid #e0e0e0 ;
+}
+.inregleft
+{
+    width: 40%;
+    height: 100%;
+    float: left;
+    background-image:  url("register.png");
+    background-position: center 180px;
+    background-repeat: no-repeat;
+}
+.inregright
+{
+    width: 60%;
+    height: 100%;
+    float: right;
+}
