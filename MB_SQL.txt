@@ -1,0 +1,197 @@
+CREATE TABLE MEMBER
+(
+  member_id INT NOT NULL,
+  member_username VARCHAR(100) NOT NULL,
+  member_password VARCHAR(100) NOT NULL,
+  member_fullname VARCHAR(100) NOT NULL,
+  member_idno VARCHAR(13) NOT NULL,
+  member_email VARCHAR(100) NOT NULL,
+  member_cell VARCHAR(10) NOT NULL,
+  member_logo VARCHAR(100),
+  member_type VARCHAR(50) NOT NULL,
+  member_rate INT,
+  member_view INT,
+  member_province VARCHAR(50),
+  member_suburb VARCHAR(100) NOT NULL,
+  member_city VARCHAR(100) NOT NULL,
+  member_code INT NOT NULL,
+  PRIMARY KEY (member_id),
+  UNIQUE (member_idno),
+  UNIQUE (member_email),
+  UNIQUE (member_cell)
+);
+
+CREATE TABLE CLIENT
+(
+  client_id INT NOT NULL,
+  member_id INT NOT NULL,
+  PRIMARY KEY (client_id),
+  FOREIGN KEY (member_id) REFERENCES MEMBER(member_id)
+);
+
+CREATE TABLE ARTIST
+(
+  artist_id INT NOT NULL,
+  artist_title VARCHAR(50),
+  artist_bio VARCHAR(1000),
+  member_id INT NOT NULL,
+  PRIMARY KEY (artist_id),
+  FOREIGN KEY (member_id) REFERENCES MEMBER(member_id)
+);
+
+CREATE TABLE FRIEND
+(
+  friendship_id INT NOT NULL,
+  friendship_date DATE NOT NULL,
+  friend_id INT NOT NULL,
+  member_id INT NOT NULL,
+  PRIMARY KEY (friendship_id),
+  FOREIGN KEY (member_id) REFERENCES MEMBER(member_id)
+);
+
+CREATE TABLE RESOURCE
+(
+  resource_id INT NOT NULL,
+  resource_name VARCHAR(100) NOT NULL,
+  resource_description VARCHAR(1000) NOT NULL,
+  resource_content VARCHAR(100) NOT NULL,
+  resource_dateadded DATE NOT NULL,
+  member_id INT NOT NULL,
+  friendship_id INT NOT NULL,
+  PRIMARY KEY (resource_id),
+  FOREIGN KEY (member_id) REFERENCES MEMBER(member_id),
+  FOREIGN KEY (friendship_id) REFERENCES FRIEND(friendship_id)
+);
+
+CREATE TABLE CHAT
+(
+  chat_id INT NOT NULL,
+  chat_message VARCHAR(100) NOT NULL,
+  chat_date DATE NOT NULL,
+  chat_sender NODATATYPE NOT NULL,
+  chat_recipient VARCHAR(50) NOT NULL,
+  friendship_id INT NOT NULL,
+  PRIMARY KEY (chat_id),
+  FOREIGN KEY (friendship_id) REFERENCES FRIEND(friendship_id)
+);
+
+CREATE TABLE GROUP
+(
+  group_id INT NOT NULL,
+  group_name VARCHAR(100) NOT NULL,
+  group_datecreated DATE NOT NULL,
+  member_id INT NOT NULL,
+  PRIMARY KEY (group_id),
+  FOREIGN KEY (member_id) REFERENCES MEMBER(member_id)
+);
+
+CREATE TABLE INDIVIDUAL
+(
+  individual_id INT NOT NULL,
+  chat_id INT NOT NULL,
+  friendship_id INT NOT NULL,
+  PRIMARY KEY (individual_id),
+  FOREIGN KEY (chat_id) REFERENCES CHAT(chat_id),
+  FOREIGN KEY (friendship_id) REFERENCES FRIEND(friendship_id)
+);
+
+CREATE TABLE GROUPMEMBER
+(
+  groupmember_id INT NOT NULL,
+  groupmember_role VARCHAR(50) NOT NULL,
+  friend_id INT NOT NULL,
+  group_id INT NOT NULL,
+  chat_id INT NOT NULL,
+  PRIMARY KEY (groupmember_id),
+  FOREIGN KEY (group_id) REFERENCES GROUP(group_id),
+  FOREIGN KEY (chat_id) REFERENCES CHAT(chat_id)
+);
+
+CREATE TABLE ITEM
+(
+  item_id INT NOT NULL,
+  item_title VARCHAR(100) NOT NULL,
+  item_theme VARCHAR(100),
+  item_releasedate DATE NOT NULL,
+  item_price FLOAT,
+  item_type VARCHAR(50) NOT NULL,
+  member_id INT NOT NULL,
+  PRIMARY KEY (item_id),
+  FOREIGN KEY (member_id) REFERENCES MEMBER(member_id)
+);
+
+CREATE TABLE PLAYLIST
+(
+  playlist_id INT NOT NULL,
+  playlist_name VARCHAR(100),
+  playlist_dateadded DATE NOT NULL,
+  member_id INT NOT NULL,
+  PRIMARY KEY (playlist_id),
+  FOREIGN KEY (member_id) REFERENCES MEMBER(member_id)
+);
+
+CREATE TABLE USREPLAYLIST
+(
+  userplaylist_id INT NOT NULL,
+  userplaylist_dateadded DATE NOT NULL,
+  item_id INT NOT NULL,
+  playlist_id INT NOT NULL,
+  PRIMARY KEY (userplaylist_id),
+  FOREIGN KEY (item_id) REFERENCES ITEM(item_id),
+  FOREIGN KEY (playlist_id) REFERENCES PLAYLIST(playlist_id)
+);
+
+CREATE TABLE SONG
+(
+  song_id INT NOT NULL,
+  song_genre VARCHAR(100),
+  song_type VARCHAR(100) NOT NULL,
+  release_type VARCHAR(100) NOT NULL,
+  item_id INT NOT NULL,
+  PRIMARY KEY (song_id),
+  FOREIGN KEY (item_id) REFERENCES ITEM(item_id)
+);
+
+CREATE TABLE ALBUM
+(
+  album_id INT NOT NULL,
+  album_description VARCHAR(1000) NOT NULL,
+  item_id INT NOT NULL,
+  PRIMARY KEY (album_id),
+  FOREIGN KEY (item_id) REFERENCES ITEM(item_id)
+);
+
+CREATE TABLE ALBUMSONG
+(
+  albumsong_id INT NOT NULL,
+  song_id INT NOT NULL,
+  album_id INT NOT NULL,
+  PRIMARY KEY (albumsong_id),
+  FOREIGN KEY (song_id) REFERENCES SONG(song_id),
+  FOREIGN KEY (album_id) REFERENCES ALBUM(album_id)
+);
+
+CREATE TABLE SINGLE
+(
+  single_id INT NOT NULL,
+  song_id INT NOT NULL,
+  PRIMARY KEY (single_id),
+  FOREIGN KEY (song_id) REFERENCES SONG(song_id)
+);
+
+CREATE TABLE FEATURE
+(
+  feature_id INT NOT NULL,
+  song_id INT NOT NULL,
+  PRIMARY KEY (feature_id),
+  FOREIGN KEY (song_id) REFERENCES SONG(song_id)
+);
+
+CREATE TABLE FEATUREDARTIST
+(
+  featuredartist_id INT NOT NULL,
+  member_id INT NOT NULL,
+  feature_id INT NOT NULL,
+  PRIMARY KEY (featuredartist_id),
+  FOREIGN KEY (feature_id) REFERENCES FEATURE(feature_id)
+);
